@@ -47,8 +47,8 @@ register(
     "python_fu_add_text",
     "Add text to image",
     "Create a new image with your text string",
-    "Anthony Domi",
-    "Anthony Domi",
+    "Domi",
+    "Domi",
     "2016",
     "Create transparent image with text (py)...",
     "",      # Create a new image, don't work on an existing one
