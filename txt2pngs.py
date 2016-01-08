@@ -4,9 +4,10 @@
 
 from math import log10
 from gimpfu import *
+from os import Environ
 
 def create_pngs(txtpath, font, size, color, width, height):
-    dirname = r'C:\Users\msiy4w\Pictures\Wallpapers_out'
+    dirname = Environ["USERPROFILE"] + r'\Pictures\Wallpapers_out'
     f = open(txtpath, 'r')
     L = f.readlines()
     i = 0
@@ -56,13 +57,13 @@ register(
     "python_fu_txt2pngs",
     "Put txt in pngs",
     "Create a new image with your text string",
-    "Anthony Domi",
-    "Anthony Domi",
+    "A. Domi",
+    "A. Domi",
     "2016",
     "Put .txt in pngs (py)...",
     "",      # Create a new image, don't work on an existing one
     [
-        (PF_STRING, "string", "txt path", 'C:/users/msiy4w/Desktop/test.txt'),
+        (PF_STRING, "string", "txt path", Environ["USERPROFILE"] + '/Desktop/test.txt'),
         (PF_FONT, "font", "Font face", "Sans"),
         (PF_SPINNER, "size", "Font size", 50, (1, 3000, 1)),
         (PF_COLOR, "color", "Text color", (1.0, 1.0, 1.0)),
