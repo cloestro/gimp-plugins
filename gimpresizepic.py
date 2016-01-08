@@ -52,8 +52,8 @@ register(
     "python_fu_kbresize",
     "Resize to wished size in kB",
     "Resize to wished size in kB (iteratively)",
-    "Anthony Domi",
-    "Anthony Domi",
+    "A. Domi",
+    "A. Domi",
     "2016",
     "Resize image (py)",
     "",      # Create a new image, don't work on an existing one
