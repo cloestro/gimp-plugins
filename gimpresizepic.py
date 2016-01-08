@@ -50,8 +50,8 @@ def kb_resize(picture_path, kb_size):
 
 register(
     "python_fu_kbresize",
-    "Resize to wished size in kb",
-    "Resize to wished size in kb (iteratively)",
+    "Resize to wished size in kB",
+    "Resize to wished size in kB (iteratively)",
     "Anthony Domi",
     "Anthony Domi",
     "2016",
@@ -59,7 +59,7 @@ register(
     "",      # Create a new image, don't work on an existing one
     [
         (PF_FILENAME, "picture_path", "Picture file to resize", path.expanduser("~")),    # Choose a file
-        (PF_SPINNER, "kb_size", "Size [kb]", 250, (10, 51200, 1))
+        (PF_SPINNER, "kb_size", "Size [kB]", 250, (10, 51200, 1))
     ],
     [],
     kb_resize, menu="<Image>/File")
