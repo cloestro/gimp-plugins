@@ -23,10 +23,19 @@ def kb_resize(picture_path, kb_size):
 
     new_path = "%s_resized.jpg" % path.splitext(picture_path)[0]
     if picture_path.lower().endswith(".png"):
-        img = pdb.file_png_load(picture_path, picture_path)
+        try:
+            img = pdb.file_png_load(picture_path, picture_path)
+        except:
+            img = pdb.file_jpeg_load(picture_path, picture_path)
     elif picture_path.lower().endswith((".jpeg", ".jpg")):
-        img = pdb.file_jpeg_load(picture_path, picture_path)
+        try:
+            img = pdb.file_jpeg_load(picture_path, picture_path)
+        except:
+            img = pdb.file_png_load(picture_path, picture_path)
     else:
+        gimp.message("Problem with %s" % picture_path)
+        return
+    if not img:
         gimp.message("Problem with %s" % picture_path)
         return
     p1 = 0.0
