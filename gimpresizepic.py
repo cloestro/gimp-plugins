@@ -4,7 +4,7 @@ from gimpfu import gimp, pdb, register, PF_FILENAME, PF_SPINNER, main
 from os import path
 
 
-def resize_img(img, percent, new_path):
+def resize_img(img, percent, new_path, jpeg_compression):
     img2 = pdb.gimp_image_duplicate(img)
     new_width = int(round(img2.width * percent / 100.0))
     new_height = int(round(img2.height * percent / 100.0))
@@ -14,7 +14,7 @@ def resize_img(img, percent, new_path):
     return [path.getsize(new_path) / 1024.0, new_width]
 
 
-def kb_resize(picture_path, kb_size):
+def kb_resize(picture_path, kb_size, jpeg_compression):
     size1 = path.getsize(picture_path) / 1024.0
     eps = 1
     if size1 < kb_size:
@@ -44,8 +44,7 @@ def kb_resize(picture_path, kb_size):
     width_list = []
     while (size < kb_size - eps) or (size > kb_size):
         percent = (p1 + p2)/2.0
-        # [size, w] = fct_resize(picture_path, percent)
-        [size, w] = resize_img(img, percent, new_path)
+        [size, w] = resize_img(img, percent, new_path, jpeg_compression)
         if (w in width_list) and (size < kb_size):
             break
         width_list.append(w)
@@ -68,7 +67,9 @@ register(
     "",      # Create a new image, don't work on an existing one
     [
         (PF_FILENAME, "picture_path", "Picture file to resize", path.expanduser("~")),    # Choose a file
-        (PF_SPINNER, "kb_size", "Size [kB]", 250, (10, 51200, 1))
+        (PF_SPINNER, "kb_size", "Size [kB]", 250, (10, 51200, 1)),
+        (PF_SPINNER, "jpeg_compression", "JPEG compression [%]", 95, 
+            (1, 100, 1))
     ],
     [],
     kb_resize, menu="<Image>/File")
